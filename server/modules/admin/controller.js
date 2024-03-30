@@ -2,7 +2,7 @@ const user = require("./../../model/userModal")
 
 const getUser = async (req, res) => {
     try {
-        const users = await user.find()
+        const users = await user.find().populate('paymentMode')
         res.status(200).json(users)
     } 
     catch (error) {

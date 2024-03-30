@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 require('./../db/connection')
 
 const userSchema = new mongoose.Schema({
@@ -18,7 +19,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    courses: {
+    course: {
         type: String,
         required: true
     },
@@ -26,8 +27,9 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    bankAccount: {
-        type: String,
+    paymentMode: {
+        type: Schema.Types.ObjectId,
+        ref: 'payment',
         required: true
     },
     screenShot: {
