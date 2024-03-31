@@ -2,14 +2,15 @@ import { useEffect, useState } from 'react'
 import { Container, Card, Form, Button, Row, Col } from 'react-bootstrap'
 import Footer from './../component/Footer'
 import { createUser, getPaymentModes } from './../api/web/webAPI'
+import { getContent } from './../api/admin/adminAPI'
 import { toast, ToastContainer } from 'react-toastify'
 
 const Apply = () => {
 
   const [data, setData] = useState({
     paymentModes: [],
-    courses: [],
-    timings: []
+    timing: [],
+    course: []
   })
 
   const [user, setUser] = useState({
@@ -25,17 +26,41 @@ const Apply = () => {
 
   const getAllOptions = async() => {
     try {
-      const data = await getPaymentModes()
-      setData({ ...data, paymentModes: data })
+      const data = await getContent()
+      setData({
+        paymentModes: data.paymentData,
+        timing: data.timingData,
+        course: data.courseData
+      })
     }
     catch (error) {
       console.log(error)
     }
   }
 
+  function convertTimeRangeToFormat(startTimestamp, endTimestamp) {
+    const startDate = new Date(startTimestamp);
+    const endDate = new Date(endTimestamp);
+
+    // Get the average time between start and end timestamps
+    const averageTime = new Date((startDate.getTime() + endDate.getTime()) / 2);
+
+    // Format time in HH:MM AM/PM format
+    const formattedTime = averageTime.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+    });
+
+    // Format date range in DD-MMM format
+    const formattedDateRange = `${startDate.getDate()}-${endDate.getDate()} ${startDate.toLocaleDateString('en-US', { month: 'short' })}`;
+
+    return `${formattedTime} (${formattedDateRange})`;
+  }
+
   const submitUserData = async() => {
     try {
-      const data = await createUser(user)
+      await createUser(user)
       setUser({ name: '', phoneNo: '', email: '', city: '', course: '', timing: '', paymentMode: '', screenShot: '' })
       toast.info("We've received your application. We'll get back to you soon.");
     }
@@ -98,13 +123,21 @@ const Apply = () => {
                   <Col>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
                       <Form.Label>Courses</Form.Label>
-                      <Form.Check type={'radio'} id={`default-${'radio'}`} label={`Rs30,000 Live Classes + Rec + Student Sup`} onChange={(e) => setUser({ ...user, course: e.target.value })} />
+                      {
+                        data.course.map((item, index) => (
+                          <Form.Check key={index} type={'radio'} id={`default-course-${index}`} label={`${item.title} : Rs. ${item.fee}`} name={'course'} value={item._id} onChange={(e) => setUser({ ...user, course: e.target.value })} />
+                        ))
+                      }
                     </Form.Group>
                   </Col>
                   <Col>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput5">
                       <Form.Label>Timings</Form.Label>
-                      <Form.Check type={'radio'} id={`default-${'radio'}`} label={`10:00am-12:00pm (Sat-Sun) 13th April`} onChange={(e) => setUser({ ...user, timing: e.target.value })} />
+                      {
+                        data.timing.map((item, index) => (
+                          <Form.Check key={index} type={'radio'} id={`default-timing-${index}`} label={convertTimeRangeToFormat(item.startDateTime, item.endDateTime)} name={'timing'} value={item._id} onChange={(e) => setUser({ ...user, timing: e.target.value })} />
+                        ))
+                      }
                     </Form.Group>
                   </Col>
                 </Row>

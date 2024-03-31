@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
 import Table from 'react-bootstrap/Table';
-import { Container } from 'react-bootstrap';
+import { Container, Modal, Button } from 'react-bootstrap';
 import { imageURL } from './../config'
 
 const CustomPagination = ({ data, itemsPerPage }) => {
@@ -14,9 +14,20 @@ const CustomPagination = ({ data, itemsPerPage }) => {
 
   const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
 
+  const [show, setShow] = useState(false);
+  const [link, setLink] = useState('')
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const previewScreenShot = (user) => {
+    setLink(`${imageURL}${user.screenShot}`)
+    handleShow()
+  }
+
   return (
-    <Container className="my-5">
-      <Table bordered hover className="text-center">
+    <>
+      <Table hover className="text-center" responsive="sm">
         <thead>
           <tr>
             <th>#</th>
@@ -30,8 +41,9 @@ const CustomPagination = ({ data, itemsPerPage }) => {
             <th>Screen Shot</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className='align-middle'>
           {
+            currentItems.length > 0 ? 
             currentItems.map((user, index) => {
               return (
                 <tr key={index}>
@@ -40,31 +52,47 @@ const CustomPagination = ({ data, itemsPerPage }) => {
                   <td>{user.phoneNo}</td>
                   <td>{user.email}</td>
                   <td>{user.city}</td>
-                  <td>{user.course}</td>
-                  <td>{user.timing}</td>
+                  <td>{user.course?.title ? user.course?.title : '-'}</td>
+                  <td>{user.timing?.startDateTime}</td>
                   <td>{user.paymentMode.name}</td>
-                  <td><a href={`${imageURL}${user.screenShot}`} target="_blank" rel="noreferrer">View</a></td>
+                  <td>
+                    <Button className='btn-sm' onClick={()=>previewScreenShot(user)}>View</Button>
+                  </td>
                 </tr>
               )
             })
+            :
+            <tr>
+              <td colSpan="9">No data found</td>
+            </tr>
           }
         </tbody>
       </Table>
       <br />
-      <Pagination>
-        {
-          Array.from({ length: Math.ceil(data.length / itemsPerPage) }).map((_, i) => (
-            <Pagination.Item
-              key={i + 1}
-              active={i + 1 === currentPage}
-              onClick={() => handlePageChange(i + 1)}
-            >
-              {i + 1}
-            </Pagination.Item>
-          ))
-        }
-      </Pagination>
-    </Container>
+      <div className='d-flex justify-content-end'>
+        <Pagination>
+          {
+            Array.from({ length: Math.ceil(data.length / itemsPerPage) }).map((_, i) => (
+              <Pagination.Item
+                key={i + 1}
+                active={i + 1 === currentPage}
+                onClick={() => handlePageChange(i + 1)}
+              >
+                {i + 1}
+              </Pagination.Item>
+            ))
+          }
+        </Pagination>
+      </div>
+      <Modal show={show} onHide={handleClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>ScreenShot</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className='mx-auto'>
+          <img src={link} alt="Screen Shot" className='img-fluid' />
+        </Modal.Body>
+      </Modal>
+    </>
   );
 };
 

@@ -21,7 +21,10 @@ const Dashboard = () => {
   }, [])
 
   return (
-    <CustomPagination data={users} itemsPerPage={itemsPerPage} />
+    <Container className="my-5">
+      <h2 className='text-center my-5'>Users</h2>
+      <CustomPagination data={users} itemsPerPage={itemsPerPage} />
+    </Container>
   )
 }
 

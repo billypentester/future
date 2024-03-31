@@ -20,11 +20,13 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     course: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'course',
         required: true
     },
     timing: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'timing',
         required: true
     },
     paymentMode: {
@@ -35,6 +37,10 @@ const userSchema = new mongoose.Schema({
     screenShot: {
         type: String,
         required: true
+    },
+    dateCreated: {
+        type: Date,
+        default: Date.now
     }
 });
 
