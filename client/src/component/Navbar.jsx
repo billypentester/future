@@ -17,17 +17,31 @@ const Header = () => {
           </Navbar.Brand>
           {
             location.pathname === '/' ?
-            <>
-              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-              <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="ms-auto gap-1 gap-lg-5">
-                  <Nav.Link href="#home">Home</Nav.Link>
-                  <Nav.Link href="#about">About</Nav.Link>
-                  <Nav.Link href="#testimonial">Testimonial</Nav.Link>
-                  <Nav.Link href="#team">Team</Nav.Link>
-                </Nav>
-              </Navbar.Collapse>
-            </>
+              <>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                  <Nav className="ms-auto gap-1 gap-lg-5">
+                    <Nav.Link href="#home">Home</Nav.Link>
+                    <Nav.Link href="#about">About</Nav.Link>
+                    <Nav.Link href="#testimonial">Testimonial</Nav.Link>
+                    <Nav.Link href="#team">Team</Nav.Link>
+                  </Nav>
+                </Navbar.Collapse>
+              </>
+            :
+            location.pathname === '/dashboard' || location.pathname === '/content' ?
+              <>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                  <Nav className="ms-auto gap-1 gap-lg-5">
+                    <Nav.Link as={Link} to="/dashboard">Users</Nav.Link>
+                    <Nav.Link as={Link} to="/content">Content</Nav.Link>
+                    <Nav.Link>
+                      <span className='text-danger'>Logout</span>
+                    </Nav.Link>
+                  </Nav>
+                </Navbar.Collapse>
+              </>
             :
             <Nav className="ms-auto">
               <Nav.Link as={Link} to="/">

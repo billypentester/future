@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Container, Card, Form, Button, Row, Col } from 'react-bootstrap'
 import Footer from './../component/Footer'
-import axios from './../config'
+import { createUser, getPaymentModes } from './../api/web/webAPI'
+import { toast, ToastContainer } from 'react-toastify'
 
 const Apply = () => {
 
@@ -24,11 +25,8 @@ const Apply = () => {
 
   const getAllOptions = async() => {
     try {
-      const response = await axios.get('web/payment')
-      setData({
-        ...data,
-        paymentModes: response.data
-      })
+      const data = await getPaymentModes()
+      setData({ ...data, paymentModes: data })
     }
     catch (error) {
       console.log(error)
@@ -37,17 +35,9 @@ const Apply = () => {
 
   const submitUserData = async() => {
     try {
-      let data = new FormData();
-      data.append('name', user.name)
-      data.append('phoneNo', user.phoneNo)
-      data.append('email', user.email)
-      data.append('city', user.city)
-      data.append('course', user.course)
-      data.append('timing', user.timing)
-      data.append('paymentMode', user.paymentMode)
-      data.append('ssFile', user.screenShot)
-      const response = await axios.post('web/user', data)
-      console.log(response)
+      const data = await createUser(user)
+      setUser({ name: '', phoneNo: '', email: '', city: '', course: '', timing: '', paymentMode: '', screenShot: '' })
+      toast.info("We've received your application. We'll get back to you soon.");
     }
     catch (error) {
       console.log(error)
@@ -163,6 +153,13 @@ const Apply = () => {
           </Card.Body>
         </Card>
       </Container>
+      <ToastContainer 
+        position="top-center"
+        theme="colored"
+        hideProgressBar={true}
+        closeOnClick={true}
+        autoClose={3000}
+      />
       <Footer />
     </div>
   )
