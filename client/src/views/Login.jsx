@@ -1,14 +1,13 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 const Login = () => {
   return (
     <div className='my-5'>
         <h2 className='text-center my-5'>Login</h2>
-        <Row>
+        <div className='d-flex'>
             <Col lg={5} md={7} sm={9} xs={11} className="mx-auto">
                 <Form>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -26,7 +25,7 @@ const Login = () => {
                     </div>
                 </Form>
             </Col>
-        </Row>
+        </div>
     </div>
     
   )

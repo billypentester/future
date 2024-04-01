@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { getUsers } from '../api/admin/adminAPI'
-import Table from 'react-bootstrap/Table';
 import { Container } from 'react-bootstrap';
 import CustomPagination from '../utils/CustomPagination'
 

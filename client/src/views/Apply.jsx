@@ -13,6 +13,8 @@ const Apply = () => {
     course: []
   })
 
+  const [terms, setTerms] = useState(false)
+
   const [user, setUser] = useState({
     name: '',
     phoneNo: '',
@@ -38,25 +40,30 @@ const Apply = () => {
     }
   }
 
-  function convertTimeRangeToFormat(startTimestamp, endTimestamp) {
-    const startDate = new Date(startTimestamp);
-    const endDate = new Date(endTimestamp);
+  function convertTimestamp(timestamp) {
+    const date = new Date(timestamp);
+  
+    const day = date.getDate();
+    const monthIndex = date.getMonth();
+    const year = date.getFullYear();
 
-    // Get the average time between start and end timestamps
-    const averageTime = new Date((startDate.getTime() + endDate.getTime()) / 2);
+    const monthNames = [
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
 
-    // Format time in HH:MM AM/PM format
-    const formattedTime = averageTime.toLocaleTimeString('en-US', {
-        hour: 'numeric',
-        minute: '2-digit',
-        hour12: true
-    });
+    const monthName = monthNames[monthIndex];
 
-    // Format date range in DD-MMM format
-    const formattedDateRange = `${startDate.getDate()}-${endDate.getDate()} ${startDate.toLocaleDateString('en-US', { month: 'short' })}`;
+    const formattedDate = `${day} ${monthName} ${year}`;
 
-    return `${formattedTime} (${formattedDateRange})`;
+    return formattedDate;
   }
+
+  const timeTo24h = (time) => {
+    const [hours, minutes] = time.split(':')
+    return `${hours % 12 || 12}:${minutes} ${hours >= 12 ? 'PM' : 'AM'}`
+  }
+
 
   const submitUserData = async() => {
     try {
@@ -67,6 +74,13 @@ const Apply = () => {
     catch (error) {
       console.log(error)
     }
+  }
+
+  const IsFormReady = () => {
+    if (user.name === '' || user.phoneNo === '' || user.email === '' || user.city === '' || user.course === '' || user.timing === '' || user.paymentMode === '' || user.screenShot === '' || terms === false) {
+      return true
+    }
+    return false
   }
 
   useEffect(() => {
@@ -92,7 +106,7 @@ const Apply = () => {
                   <Col>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                       <Form.Label>Full Name</Form.Label>
-                      <Form.Control type="text" placeholder="abc" onChange={(e) => setUser({ ...user, name: e.target.value })} />
+                      <Form.Control type="text" placeholder="Enter your name" onChange={(e) => setUser({ ...user, name: e.target.value })} />
                     </Form.Group>
                   </Col>
                   <Col>
@@ -135,7 +149,7 @@ const Apply = () => {
                       <Form.Label>Timings</Form.Label>
                       {
                         data.timing.map((item, index) => (
-                          <Form.Check key={index} type={'radio'} id={`default-timing-${index}`} label={convertTimeRangeToFormat(item.startDateTime, item.endDateTime)} name={'timing'} value={item._id} onChange={(e) => setUser({ ...user, timing: e.target.value })} />
+                          <Form.Check key={index} type={'radio'} id={`default-timing-${index}`} label={`${timeTo24h(item.startTime)} - ${timeTo24h(item.endTime)} : (${convertTimestamp(item.date)})`} name={'timing'} value={item._id} onChange={(e) => setUser({ ...user, timing: e.target.value })} />
                         ))
                       }
                     </Form.Group>
@@ -167,18 +181,25 @@ const Apply = () => {
                   <Col>
                     <Form.Group controlId="formFile" className="mb-3">
                       <Form.Label>Payment Screen Shot</Form.Label>
-                      <Form.Control type="file" onChange={(e) => setUser({ ...user, screenShot: e.target.files[0] })} />
+                      <Form.Control type="file" accept="image/png, image/gif, image/jpeg, image/jpg" onChange={(e) => setUser({ ...user, screenShot: e.target.files[0] })} />
                     </Form.Group>
                   </Col>
                 </Row>
                 <Row className='my-4'>
                   <Col>
-                    <Form.Check type={'checkbox'} id={`default-terms`} label={'I agree to the terms and conditions'} />
+                    <Form.Check type={'checkbox'} id={`default-terms`} checked={terms} label={'I agree to the terms and conditions'} onChange={(e) => setTerms(e.target.checked)} />
                   </Col>
                 </Row>
                 <Row className='my-2'>
                   <Col className='d-grid'>
-                    <Button className="secondary my-3 w-full btn-block" onClick={submitUserData}>Submit</Button>
+                    <Form.Text className="text-muted text-center">
+                      Your Payment will be verified by our team so whatsapp it as well at +92 333 1234567
+                    </Form.Text>
+                  </Col>
+                </Row>
+                <Row className='my-2'>
+                  <Col className='d-grid'>
+                    <Button className="secondary my-3 w-full btn-block" disabled={IsFormReady()} onClick={submitUserData}>Submit</Button>
                   </Col>
                 </Row>
               </Form>

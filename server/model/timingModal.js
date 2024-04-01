@@ -1,12 +1,17 @@
 const mongoose = require('mongoose');
+const User = require('./userModal');
 require('./../db/connection')
 
-const timingModal = new mongoose.Schema({
-    startDateTime: {
-        type: Date,
+const timingSchema = new mongoose.Schema({
+    startTime: {
+        type: String, 
         required: true
     },
-    endDateTime: {
+    endTime: {
+        type: String,
+        required: true
+    },
+    date: {
         type: Date,
         required: true
     },
@@ -16,4 +21,14 @@ const timingModal = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('timing', timingModal); 
+timingSchema.pre('findOneAndDelete', async function(next) {
+    const timingId = this.getQuery()["_id"];
+    await User.updateMany(
+        { timing: timingId },
+        { $set: { timing: null } }
+    );
+    next();
+});
+
+
+module.exports = mongoose.model('timing', timingSchema);
