@@ -11,11 +11,10 @@ const Footer = () => {
             <div className="container-fluid text-center">
                 <div className="row">
                     
-                    <div className="col-md-6 mt-md-0 mt-3">
+                    <div className="col-md-6 mt-md-0 mb-3">
                         <h5 className="text-uppercase">Logo</h5>
-                        <p>Description</p>
                         <Link to="/apply">
-                            <Button variant="primary"> Apply Now </Button>
+                            <Button variant="primary my-2"> Apply Now </Button>
                         </Link>
                     </div>
 

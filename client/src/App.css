@@ -33,3 +33,10 @@ div a {
   width: 100%;
   z-index: 1000;
 }
+
+.landing-img {
+  height: 80vh;
+  width: 100%;
+  object-fit: cover;  
+  object-position: center center;
+}

@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 const Home = () => {
 
   return (
-    <div>
+    <div id='home'>
       <div className='bg-header-img' style={{height: '100vh'}}>
         <div className='overlay'>
           <div className='content'>
@@ -22,28 +22,50 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Container className="my-5">
-        <div className='row'>
-          <div className='col-6 d-flex align-items-center pe-5'>
+      <Container id="about" className="my-5">
+        <h2 className='text-center display-4 my-5'>About Us</h2>
+        <div className='row mb-5'>
+          <div className='col-6'>
+            <img className='rounded shadow-lg landing-img' src='/pic1.jpg' alt='img' />
+          </div>
+          <div className='col-6 d-flex align-items-center p-5'>
             <div>
               <h2 className='display-6 mb-4'>Hi I'm Nouman Pervaiz</h2>
-              <p className=''>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates. Quisquam, voluptates. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates. Quisquam, voluptates. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates. Quisquam, voluptates.</p>
-              <p className=''>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates. Quisquam, voluptates. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates. Quisquam, voluptates. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates. Quisquam, voluptates.</p>
+              <p className=''>I am a professional crypto trader.I am trading from past 3 years. I start my crypto journey with just Rs-1500pkr Now with the blessing of Allah i am multimillionaire I am passionate to give my knowledge & experience of my journey & make you millionaire also</p>
               <div className='d-flex mt-4 gap-3'>
-                <a href='https://www.facebook.com' className='text-dark me-3'>
-                  <i className='fab fa-facebook fa-2x'></i>
-                </a>
-                <a href='https://www.instagram.com' className='text-dark me-3'>
+                <a href='https://www.instagram.com' target='_blank' className='text-dark me-3'>
                   <i className='fab fa-instagram fa-2x'></i>
                 </a>
-                <a href='https://www.twitter.com' className='text-dark me-3'>
-                  <i className='fab fa-twitter fa-2x'></i>
+                <a href='https://www.facebook.com' target='_blank' className='text-dark me-3'>
+                  <i className='fab fa-facebook fa-2x'></i>
+                </a>
+                <a href='https://wa.me/923000000000' target='_blank' className='text-dark me-3'>
+                  <i className='fab fa-whatsapp fa-2x'></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className='row'>
+          <div className='col-6 d-flex align-items-center p-5'>
+            <div>
+              <h2 className='display-6 mb-4'>Hi I'm Nouman Pervaiz</h2>
+              <p className=''>I am a professional crypto trader.I am trading from past 3 years. I start my crypto journey with just Rs-1500pkr Now with the blessing of Allah i am multimillionaire I am passionate to give my knowledge & experience of my journey & make you millionaire also</p>
+              <div className='d-flex mt-4 gap-3'>
+                <a href='https://www.instagram.com' target='_blank' className='text-dark me-3'>
+                  <i className='fab fa-instagram fa-2x'></i>
+                </a>
+                <a href='https://www.facebook.com' target='_blank' className='text-dark me-3'>
+                  <i className='fab fa-facebook fa-2x'></i>
+                </a>
+                <a href='https://wa.me/923000000000' target='_blank' className='text-dark me-3'>
+                  <i className='fab fa-whatsapp fa-2x'></i>
                 </a>
               </div>
             </div>
           </div>
           <div className='col-6'>
-            <img className='img-fluid' src='/pic2.jpg' alt='img' />
+            <img className='rounded shadow-lg landing-img' src='/pic2.jpg' alt='img' />
           </div>
         </div>
       </Container>
