@@ -1,7 +1,8 @@
 const router = require("express").Router()
-const { getUser, getContent, deletePayment, createPayment, updatePayment, createCourse, deleteCourse, updateCourse, createTiming, deleteTiming, updateTiming } = require('./controller')
+const { getUser, adminLogin, getContent, deletePayment, createPayment, updatePayment, createCourse, deleteCourse, updateCourse, createTiming, deleteTiming, updateTiming } = require('./controller')
 
 router.get("/user", getUser)
+router.post("/login", adminLogin)
 
 router.get("/content", getContent)
 

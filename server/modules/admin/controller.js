@@ -2,6 +2,10 @@ const user = require("./../../model/userModal")
 const timing = require("./../../model/timingModal")
 const payment = require("./../../model/paymentModal")
 const course = require("./../../model/courseModal")
+const admin = require("./../../model/adminMdoal")
+require('dotenv').config()
+
+const jwt = require('jsonwebtoken')
 
 const getUser = async (req, res) => {
     try {
@@ -121,8 +125,29 @@ const updateTiming = async(req, res) => {
     }
 }
 
+const adminLogin = async (req, res) => {
+    try {
+        const { email, password } = req.body
+        const user = await admin.findOne({ email, password })
+        if (user) {
+            const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET)
+            user.token = token
+            await user.save()
+            res.status(200).json({
+                token: user.token
+            })
+        }
+        else {
+            res.status(400).json({ message: "Invalid email or password" })
+        }
+    }
+    catch (error) {
+        res.status(500).json(error)
+    }
+}
+
 module.exports = { 
-    getUser, 
+    getUser, adminLogin,
     getContent, 
     deletePayment, updatePayment, createPayment,
     createCourse, deleteCourse, updateCourse,

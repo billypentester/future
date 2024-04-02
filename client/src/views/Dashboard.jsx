@@ -16,7 +16,13 @@ const Dashboard = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    fetchData()
+    let token = window.localStorage.getItem('userToken')
+    if(token) {
+      fetchData()
+    }
+    else {
+      window.location.href = '/login'
+    }
   }, [])
 
   return (

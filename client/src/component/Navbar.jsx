@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -7,24 +7,53 @@ import Button from 'react-bootstrap/Button';
 
 const Header = () => {
 
+  const [showBackground, setShowBackground] = useState(false)
+  const TOP_OFFSET = 100;
   const location = useLocation();
 
+  const logout = () => {
+    window.localStorage.removeItem('userToken')
+    window.location.href = '/login'
+  }
+
+  const isHome = () => {
+    return location.pathname === '/'
+  }
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY >= TOP_OFFSET) {
+        setShowBackground(true)
+      } 
+      else {
+        setShowBackground(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
+
   return (
-      <Navbar collapseOnSelect expand={'lg'} bg="light" data-bs-theme="light" className='bg-body-tertiary'>
+    <div className={`${isHome() ? 'header-navbar' : ''}`}>
+      <Navbar collapseOnSelect expand={'lg'} className={`${(isHome() && !showBackground) ? 'bg-transparent' : 'bg-light' }`}>
         <Container>
-          <Navbar.Brand as={Link} to="/">
+          <Navbar.Brand as={Link} to="/" className='text-primary'>
             Logo
           </Navbar.Brand>
           {
-            location.pathname === '/' ?
+            isHome() ?
               <>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                   <Nav className="ms-auto gap-1 gap-lg-5">
-                    <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#about">About</Nav.Link>
-                    <Nav.Link href="#testimonial">Testimonial</Nav.Link>
-                    <Nav.Link href="#team">Team</Nav.Link>
+                    <Nav.Link className={`${(isHome() && !showBackground) ? 'text-white' : ''}`} href="#home">Home</Nav.Link>
+                    <Nav.Link className={`${(isHome() && !showBackground) ? 'text-white' : ''}`} href="#about">About</Nav.Link>
+                    <Nav.Link className={`${(isHome() && !showBackground) ? 'text-white' : ''}`} href="#testimonial">Testimonial</Nav.Link>
+                    <Nav.Link className={`${(isHome() && !showBackground) ? 'text-white' : ''}`} href="#team">Team</Nav.Link>
                   </Nav>
                 </Navbar.Collapse>
               </>
@@ -36,7 +65,7 @@ const Header = () => {
                   <Nav className="ms-auto gap-1 gap-lg-5">
                     <Nav.Link as={Link} to="/dashboard">Users</Nav.Link>
                     <Nav.Link as={Link} to="/content">Content</Nav.Link>
-                    <Nav.Link>
+                    <Nav.Link onClick={()=> logout()}>
                       <span className='text-danger'>Logout</span>
                     </Nav.Link>
                   </Nav>
@@ -51,6 +80,7 @@ const Header = () => {
           }
         </Container>
       </Navbar>
+    </div>
   )
 }
 

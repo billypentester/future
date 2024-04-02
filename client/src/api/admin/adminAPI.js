@@ -1,5 +1,15 @@
 import axios from './../../config'
 
+const adminLogin = async(data) => {
+    try{
+        const response = await axios.post('admin/login', data)
+        return response.data
+    }
+    catch(error){
+        console.log(error)
+    }
+}
+
 const getUsers = async() => {
     try {
         const response = await axios.get('admin/user')
@@ -112,7 +122,7 @@ const updateTiming = async(data) => {
 
 
 export {
-    getUsers, 
+    getUsers, adminLogin,
     getContent, 
     addPaymentMode, deletePaymentMode, updatePaymentMode,
     addCourse, deleteCourse, updateCourse,
