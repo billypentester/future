@@ -53,7 +53,7 @@ const Header = () => {
                     <Nav.Link className={`${(isHome() && !showBackground) ? 'text-white' : ''}`} href="#home">Home</Nav.Link>
                     <Nav.Link className={`${(isHome() && !showBackground) ? 'text-white' : ''}`} href="#about">About</Nav.Link>
                     <Nav.Link className={`${(isHome() && !showBackground) ? 'text-white' : ''}`} href="#testimonial">Testimonial</Nav.Link>
-                    <Nav.Link className={`${(isHome() && !showBackground) ? 'text-white' : ''}`} href="#team">Team</Nav.Link>
+                    {/* <Nav.Link className={`${(isHome() && !showBackground) ? 'text-white' : ''}`} href="#team">Team</Nav.Link> */}
                   </Nav>
                 </Navbar.Collapse>
               </>
