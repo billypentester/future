@@ -2,8 +2,8 @@ const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
 require('dotenv').config()
-const web = require('./modules/web/api')
-const admin = require('./modules/admin/api')
+const web = require('./../modules/web/api')
+const admin = require('./../modules/admin/api')
 
 const app = express()
 const port = process.env.PORT || 5000
