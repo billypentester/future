@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Header = () => {
   return (
-    <div id='home' className='bg-header-img' style={{height: '45vh'}}>
+    <div id='home' className='bg-header-img' style={{height: '50vh'}}>
         <div className='overlay'>
             <div className='content'>
             <div className='text-center'>
