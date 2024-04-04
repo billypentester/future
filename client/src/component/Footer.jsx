@@ -1,7 +1,5 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container';
-import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -22,13 +20,13 @@ const Footer = () => {
                         <h5 className="text-uppercase">Social Links</h5>
                         <ul className="list-unstyled d-flex flex-column gap-2 my-4">
                             <li>
-                                <Link to="https://www.instagram.com/freedom_wth_nomi">Instagram</Link>
+                                <a target='_blank' href="https://www.instagram.com/freedom_wth_nomi">Instagram</a>
                             </li>
                             <li>
-                                <Link to="#">Youtube</Link>
+                                <a target='_blank' href="#">Youtube</a>
                             </li>
                             <li>
-                                <Link to="https://www.tiktok.com/@freedom_wth_nomi">TikTok</Link>
+                                <a target='_blank' href="https://www.tiktok.com/@freedom_wth_nomi">TikTok</a>
                             </li>
                         </ul>
                     </div>
