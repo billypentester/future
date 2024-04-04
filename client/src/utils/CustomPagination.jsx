@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
 import Table from 'react-bootstrap/Table';
 import { Container, Modal, Button } from 'react-bootstrap';
-import { imageURL } from './../config'
 
 const CustomPagination = ({ data, itemsPerPage }) => {
 
@@ -38,7 +37,7 @@ const CustomPagination = ({ data, itemsPerPage }) => {
   }
 
   const previewScreenShot = (user) => {
-    setLink(`${imageURL}${user.screenShot}`)
+    setLink(user.screenShot)
     handleShow()
   }
 
