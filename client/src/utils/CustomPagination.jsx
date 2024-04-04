@@ -44,7 +44,7 @@ const CustomPagination = ({ data, itemsPerPage }) => {
 
   return (
     <>
-      <Table hover className="text-center" responsive="sm">
+      <Table hover className="text-center" responsive>
         <thead>
           <tr>
             <th>#</th>

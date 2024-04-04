@@ -4,6 +4,7 @@ import Footer from './../component/Footer'
 import { createUser, getPaymentModes } from './../api/web/webAPI'
 import { getContent } from './../api/admin/adminAPI'
 import { toast, ToastContainer } from 'react-toastify'
+import { put } from "@vercel/blob";
 
 const Apply = () => {
 
@@ -66,21 +67,30 @@ const Apply = () => {
 
 
   const submitUserData = async() => {
-    try {
-      await createUser(user)
-      setUser({ name: '', phoneNo: '', email: '', city: '', course: '', timing: '', paymentMode: '', screenShot: '' })
-      toast.info("We've received your application. We'll get back to you soon.");
+    try{
+      console.log(screenShot)
+      const response = await put('test', screenShot);
+      console.log(response)
     }
-    catch (error) {
+    catch(error){
       console.log(error)
     }
+    // try {
+    //   await createUser(user)
+    //   setUser({ name: '', phoneNo: '', email: '', city: '', course: '', timing: '', paymentMode: '', screenShot: '' })
+    //   toast.info("We've received your application. We'll get back to you soon.");
+    // }
+    // catch (error) {
+    //   console.log(error)
+    // }
   }
 
   const IsFormReady = () => {
-    if (user.name === '' || user.phoneNo === '' || user.email === '' || user.city === '' || user.course === '' || user.timing === '' || user.paymentMode === '' || user.screenShot === '' || terms === false) {
-      return true
-    }
     return false
+    // if (user.name === '' || user.phoneNo === '' || user.email === '' || user.city === '' || user.course === '' || user.timing === '' || user.paymentMode === '' || user.screenShot === '' || terms === false) {
+    //   return true
+    // }
+    // return false
   }
 
   useEffect(() => {

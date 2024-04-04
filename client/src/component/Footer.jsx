@@ -8,30 +8,27 @@ const Footer = () => {
     <div className='bg-light'>
         <Container>
         <footer className="pt-4">
-            <div className="container-fluid text-center">
+            <div className="container text-center">
                 <div className="row">
                     
                     <div className="col-md-6 mt-md-0 mb-3">
-                        <h5 className="text-uppercase">Logo</h5>
-                        <Link to="/apply">
+                        <img src='/logo.png' alt='logo' width='200' className='d-inline-block align-text-top' />
+                        {/* <Link to="/apply">
                             <Button variant="primary my-2"> Apply Now </Button>
-                        </Link>
+                        </Link> */}
                     </div>
 
                     <div className="col-md-3 mb-md-0 mb-3">
                         <h5 className="text-uppercase">Social Links</h5>
                         <ul className="list-unstyled d-flex flex-column gap-2 my-4">
                             <li>
-                                <Link to="#">Facebook</Link>
-                            </li>
-                            <li>
-                                <Link to="#">Instagram</Link>
+                                <Link to="https://www.instagram.com/freedom_wth_nomi">Instagram</Link>
                             </li>
                             <li>
                                 <Link to="#">Youtube</Link>
                             </li>
                             <li>
-                                <Link to="#">TikTok</Link>
+                                <Link to="https://www.tiktok.com/@freedom_wth_nomi">TikTok</Link>
                             </li>
                         </ul>
                     </div>
