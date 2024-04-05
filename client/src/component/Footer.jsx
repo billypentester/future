@@ -1,5 +1,6 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -34,7 +35,11 @@ const Footer = () => {
                     <div className="col-md-3 mb-md-0 mb-3">
                         <h5 className="text-uppercase">Legal</h5>
                         <ul className="list-unstyled d-flex flex-column gap-2 my-4">
-                            <li><a href="#!">Terms & Conditions</a></li>
+                            <li>
+                                <Link to="terms">
+                                    Terms & Conditions
+                                </Link>
+                            </li>
                         </ul>
                     </div>
 

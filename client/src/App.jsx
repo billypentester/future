@@ -10,6 +10,7 @@ import Dashboard from "./views/Dashboard";
 import Login from "./views/Login";
 import Profile from "./views/Profile";
 import Content from "./views/Content";
+import Terms from "./views/Terms";
 
 import NoMatch from './views/NoMatch'
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/content" element={<Content />} />
+        <Route path="/terms" element={<Terms />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </>

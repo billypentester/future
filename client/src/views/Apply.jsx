@@ -14,6 +14,8 @@ const Apply = () => {
   })
 
   const [terms, setTerms] = useState(false)
+  const [fileError, setFileError] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const [user, setUser] = useState({
     name: '',
@@ -67,9 +69,11 @@ const Apply = () => {
 
   const submitUserData = async() => {
     try {
+      setLoading(true)
       await createUser(user)
       setUser({ name: '', phoneNo: '', email: '', city: '', course: '', timing: '', paymentMode: '', screenShot: '' })
       toast.info("We've received your application. We'll get back to you soon.");
+      setLoading(false)
     }
     catch (error) {
       console.log(error)
@@ -77,11 +81,24 @@ const Apply = () => {
   }
 
   const IsFormReady = () => {
-    if (user.name === '' || user.phoneNo === '' || user.email === '' || user.city === '' || user.course === '' || user.timing === '' || user.paymentMode === '' || user.screenShot === '' || terms === false) {
+    if (user.name === '' || user.phoneNo === '' || user.email === '' || user.city === '' || user.course === '' || user.timing === '' || user.paymentMode === '' || user.screenShot === '' || terms === false || fileError === true || loading === true) {
       return true
     }
     return false
   }
+
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0]
+    if (file.size > 1000000) {
+      setFileError(true)
+      return
+    }
+    else {
+      setFileError(false)
+      setUser({ ...user, screenShot: file })
+    }
+  }
+
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -178,7 +195,10 @@ const Apply = () => {
                   <Col>
                     <Form.Group controlId="formFile" className="mb-3">
                       <Form.Label>Payment Screen Shot</Form.Label>
-                      <Form.Control type="file" accept="image/png, image/gif, image/jpeg, image/jpg" onChange={(e) => setUser({ ...user, screenShot: e.target.files[0] })} />
+                      <Form.Control type="file" accept="image/png, image/gif, image/jpeg, image/jpg" onChange={handleFileUpload} />
+                      <Form.Text className="text-danger">
+                        {fileError ? 'File size should be less than 1MB' : ''}
+                      </Form.Text>
                     </Form.Group>
                   </Col>
                 </Row>
