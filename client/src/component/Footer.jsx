@@ -26,9 +26,6 @@ const Footer = () => {
                             <li>
                                 <a target='_blank' href="#">Youtube</a>
                             </li>
-                            <li>
-                                <a target='_blank' href="https://www.tiktok.com/@freedom_wth_nomi">TikTok</a>
-                            </li>
                         </ul>
                     </div>
 

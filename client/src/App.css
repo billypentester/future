@@ -16,8 +16,6 @@ div a {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  /* height: 100vh; */
-  /* width: 100%; */
 }
 
 .bg-header-img .overlay {
@@ -51,4 +49,43 @@ div a {
   height: 70vh;
   object-fit: cover;  
   object-position: center center;
+}
+
+.landing-img-height {
+  height: 55vh;
+}
+
+@media screen and (min-width: 576px) {
+
+  .landing-img-height {
+    height: 60vh;
+  }
+
+  .bg-header-img .overlay .content {
+    top: 40%;
+  }
+  
+}
+
+@media screen and (min-width: 768px) {
+  
+  .bg-header-img .overlay .content {
+    top: 45%;
+  }
+  
+  .landing-img-height {
+    height: 70vh;
+  }
+
+}
+
+@media screen and (min-width: 1024px) {
+
+  .bg-header-img .overlay .content {
+    top: 60%;
+  }
+
+  .landing-img-height {
+    height: 100vh;
+  }
 }
