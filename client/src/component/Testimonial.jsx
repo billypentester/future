@@ -57,7 +57,7 @@ const Testimonial = () => {
 
     return (
         <div id="testimonial">
-            <Container className='my-5'>
+            {/* <Container className='my-5'>
                 <h2 className='my-5 text-center display-6'>Take a look at some of our 100+ successful student testimonials!</h2>
                 <Row className="g-2 g-sm-2 g-md-2 g-lg-5 justify-content-center" xs={1} md={2} lg={3}>
                 {
@@ -71,7 +71,7 @@ const Testimonial = () => {
                     })
                 }
                 </Row>
-            </Container>
+            </Container> */}
             <Container className='my-5'>
                 <h2 className='my-5 text-center display-6'>Ready for a glimpse into your future ?</h2>
                 <Slider {...settings}>
