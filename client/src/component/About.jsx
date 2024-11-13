@@ -5,7 +5,7 @@ const About = () => {
   return (
     <Container id="about" fluid className="my-5 container-lg">
         <h2 className='text-center display-4 my-5'>About Us</h2>
-{/*         <div className='d-flex justify-content-center flex-wrap align-items-center mb-0 mb-md-3 mb-lg-5'>
+    {/* <div className='d-flex justify-content-center flex-wrap align-items-center mb-0 mb-md-3 mb-lg-5'>
             <div className='col-12 col-md-6 col-lg-4 text-center'>
                 <img className='rounded shadow-lg landing-img' src='/pic1.jpg' alt='img' />
             </div>
@@ -36,6 +36,21 @@ const About = () => {
                     </div>
                 </div>
             </div>
+        </div>
+        <div className='d-flex justify-content-center my-5'>
+            <iframe 
+                className='shadow-lg rounded'
+                style={{width: '70%', height: '520px'}}
+                // width="600" 
+                // height="400" 
+                src="https://www.youtube.com/embed/lfgsrAqYbLA?si=ORdjgICUGg0WxL7w" 
+                title="Crypto Trading" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen
+            >
+            </iframe>
         </div>
     </Container>
   )

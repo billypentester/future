@@ -14,6 +14,12 @@ const Testimonial = () => {
         '/s2.jpg',
         '/s3.jpg',
         '/s4.jpg',
+        '/s5.jpeg',
+        '/s6.jpeg',
+        '/s7.jpeg',
+        '/s8.jpeg',
+        '/s9.jpeg',
+        '/s10.jpeg',
     ]
 
     var settings = {
