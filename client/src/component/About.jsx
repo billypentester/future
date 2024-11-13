@@ -40,9 +40,9 @@ const About = () => {
         <div className='d-flex justify-content-center my-5'>
             <iframe 
                 className='shadow-lg rounded'
-                style={{width: '70%', height: '520px'}}
-                // width="600" 
-                // height="400" 
+                // style={{width: '70%', height: '520px'}}
+                width="560" 
+                height="315" 
                 src="https://www.youtube.com/embed/lfgsrAqYbLA?si=ORdjgICUGg0WxL7w" 
                 title="Crypto Trading" 
                 frameborder="0" 
