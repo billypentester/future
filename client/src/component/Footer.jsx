@@ -24,7 +24,7 @@ const Footer = () => {
                                 <a target='_blank' href="https://www.instagram.com/freedom_wth_nomi">Instagram</a>
                             </li>
                             <li>
-                                <a target='_blank' href="https://youtube.com/@FaheemSultankhan">Youtube</a>
+                                <a target='_blank' href="https://youtu.be/lfgsrAqYbLA?si=eJcIIEbhzFwSnxd9">Youtube</a>
                             </li>
                         </ul>
                     </div>
