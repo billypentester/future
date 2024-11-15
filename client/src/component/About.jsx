@@ -28,7 +28,7 @@ const About = () => {
             <div className='col-12 col-md-6 col-lg-6 d-flex align-items-center py-5 px-lg-5 px-3'>
                 <div>
                     <h2 className='display-6 mb-4'>Welcome to The Freedom University</h2>
-                    <p>I’m Nouman Pervaiz, A professional cryptocurrency trader with over six years of experience in the financial markets. My journey began with a modest investment of just PKR 1,500, and through unwavering dedication and strategic trading, I’ve built a multimillion-dollar portfolio—by the grace of Allah.</p>
+                    <p>I’m Nouman Pervaiz, a professional cryptocurrency trader with over six years of experience in the financial markets. My journey began with a modest investment of just PKR 1,500, and through unwavering dedication and strategic trading, I’ve built a multimillion-dollar portfolio—by the grace of Allah.</p>
                     <br />
                     <p>I’m deeply passionate about helping others unlock their full potential in the world of cryptocurrency. Through my mentorship, I provide personalized, results-driven guidance to aspiring traders, empowering you to take control of your financial future.</p>
                     <br />
