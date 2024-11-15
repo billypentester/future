@@ -27,8 +27,16 @@ const About = () => {
             </div>
             <div className='col-12 col-md-6 col-lg-6 d-flex align-items-center py-5 px-lg-5 px-3'>
                 <div>
-                    <h2 className='display-6 mb-4'>Hi I'm Nouman Pervaiz</h2>
-                    <p>As a professional crypto trader with three years of experience, I embarked on my crypto journey with just Rs-1500 PKR. Now, with the blessings of Allah, I am a multimillionaire. I am passionate about sharing my knowledge and experience to guide others on their journey to financial success in the world of cryptocurrency. Let me help you become a millionaire too.</p>
+                    <h2 className='display-6 mb-4'>Welcome to The Freedom University</h2>
+                    <p>I’m Nouman Pervaiz, A professional cryptocurrency trader with over six years of experience in the financial markets. My journey began with a modest investment of just PKR 1,500, and through unwavering dedication and strategic trading, I’ve built a multimillion-dollar portfolio—by the grace of Allah.</p>
+                    <br />
+                    <p>I’m deeply passionate about helping others unlock their full potential in the world of cryptocurrency. Through my mentorship, I provide personalized, results-driven guidance to aspiring traders, empowering you to take control of your financial future.</p>
+                    <br />
+                    <p>At The Freedom University, we don’t just teach trading—we transform lives. Whether you’re just starting out or looking to elevate your trading skills, I’ll be by your side, sharing the proven strategies and insights that helped me achieve financial freedom.</p>
+                    <br />
+                    <p>Ready to take the next step? Let’s work together to turn your financial aspirations into reality.</p>
+                    <br />
+                    <p>Join me today and start your journey toward success in the cryptocurrency world.</p>
                     <div className='d-flex mt-4 gap-3'>
                         <a href='https://www.instagram.com/freedom_wth_nomi' target='_blank' className='text-dark me-3'>
                             <i className='fab fa-instagram fa-2x'></i>
